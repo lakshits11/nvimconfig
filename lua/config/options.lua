@@ -25,9 +25,15 @@ opt.scrolloff = 999
 opt.completeopt = "menuone,noinsert,noselect"
 
 -- highlight the current line
-opt.cursorline = true
--- disable intro message
-opt.shortmess:append "sI"
+-- opt.cursorline = true
+-- disable search count wrap and startup messages
+-- opt.shortmess = "sI"
+opt.shortmess:append { s = true, I = true }
+
+-- height of the pop up menu
+opt.pumheight = 15
+opt.showtabline = 2 -- always display tabline(line at top of neovim window that shows all the tabs)
+opt.title = true -- set terminal title to the filename and path
 
 
 
@@ -71,7 +77,8 @@ opt.swapfile = false                        -- Disable swap file creation
 opt.backup = false                           -- Disable backup file creation
 opt.undodir = vim.fn.expand("~/.nvim/undodir") -- Set the directory for persistent undo files
 opt.undofile = true                         -- Enable persistent undo
-opt.backspace = "indent,eol,start"         -- Allow backspacing over autoindent, line breaks, and at the start of insert mode
+-- opt.backspace = "indent,eol,start"       -- Allow backspacing over autoindent, line breaks, and at the start of insert mode explicitly and not in other cases
+opt.backspace = "nostop"                    -- Allow backspacing over anything inserted (just ike vscode)
 opt.splitright = true                       -- Open new splits to the right
 opt.splitbelow = true                       -- Open new splits below
 opt.autochdir = false                       -- Do not change the current working directory to that of the file being edited
@@ -87,8 +94,21 @@ opt.fileencoding = "UTF-8"                   -- Set the file encoding to UTF-8
 opt.whichwrap:append "<>[]hl"
 -- specify the character used to fill end of buffer (default is ~)
 opt.fillchars = { eob = " " }
--- time to wait for a mapped sequence to complete (in milliseconds, default=1000)
--- opt.timeoutlen = 1000
+-- time to wait for a mapped sequence to complete (in milliseconds, default=1000) ,shorten key timeout length a little bit for which-key
+opt.timeoutlen = 700
+opt.copyindent = true -- copy the previous indentation on autoindenting
+opt.foldenable = true -- enable fold for nvim-ufo
+opt.foldlevel = 99 -- set high foldlevel for nvim-ufo
+opt.foldlevelstart = 99 -- start with all code unfolded
+-- opt.foldcolumn = vim.fn.has "nvim-0.9" == 1 and "1" or nil, -- show foldcolumn in nvim 0.9
+opt.history = 100 -- number of commands to remember in a history table
+opt.breakindent = true -- indent wrapped lines
+opt.updatetime = 300 -- length of time to wait before triggering the plugin
+opt.preserveindent = true -- preserve indent structure as much as possible
+
+opt.conceallevel = 0 -- so that `` is visible in markdown files
+
+
 
 ----------------------------------------------------------------------------------------------
 -- interval for writing swap file to disk, also used by gitsigns
